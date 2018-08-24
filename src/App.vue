@@ -38,7 +38,7 @@ export default {
       round: 0,
       stages: [],
       exercise: []
-    };
+    }
   },
   created() {
     this.totalWorkTime = this.workTime;
