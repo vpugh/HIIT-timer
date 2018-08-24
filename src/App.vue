@@ -38,7 +38,7 @@ export default {
       round: 0,
       stages: [],
       exercise: []
-    }
+    };
   },
   created() {
     this.totalWorkTime = this.workTime;
@@ -96,10 +96,6 @@ export default {
         this.rounds = value;
         this.createStages();
       }
-      console.log("Main " + value, name);
-    },
-    onClickChild(value) {
-      console.log(value); // someValue
     },
     createStages: function() {
       this.stages = [];
@@ -140,11 +136,13 @@ export default {
       this.round = 0;
     },
     countdownTimer() {
-      var snd = new Audio("", "/assets/sounds/ding.mp3");
-      var beep = new Audio("", "./assets/sounds/beep.mp3");
-      var airhorn = new Audio("", "assets/sounds/airhorn.mp3");
+      var snd = new Audio(
+        "http://soundbible.com/mp3/Elevator Ding-SoundBible.com-685385892.mp3"
+      );
+      var beep = new Audio(
+        "http://soundbible.com/mp3/Checkout%20Scanner%20Beep-SoundBible.com-593325210.mp3"
+      );
       if (this.totalWorkTime == 0 && this.totalRounds == this.round) {
-        airhorn.play();
         this.timerRunning = false;
         this.timerPaused = false;
         clearInterval(this.interval);
@@ -165,9 +163,14 @@ export default {
     },
     roundStep: function() {
       this.round++;
-
+      var airhorn = new Audio(
+        "http://soundbible.com/mp3/Air%20Horn-SoundBible.com-964603082.mp3"
+      );
       if (this.round == this.totalRounds) {
         this.timerReset();
+        setTimeout(function() {
+          airhorn.play();
+        }, 1000);
       } else if (this.isEven(this.round) == true) {
         this.totalWorkTime = this.workTime;
       } else if (this.isEven(this.round) == false) {

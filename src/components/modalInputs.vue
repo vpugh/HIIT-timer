@@ -9,7 +9,6 @@ export default {
   methods: {
     updateContent: function(value, name) {
       this.$emit("input", value, name);
-      console.log("Modal Inputs " + value, name);
     }
   }
 };

@@ -54,11 +54,9 @@ export default {
   methods: {
     updateValues: function(value, name) {
       this.$emit("input", value, name);
-      console.log("Modal " + value, name);
     },
     updateContent: function(value) {
       this.$emit("input", value);
-      console.log(value);
     },
     closeModal() {
       this.$emit("close", true);
