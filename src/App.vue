@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-  <navigation @click.native="settingModal = !settingModal"></navigation>
+  <navigation @open="openModal" @pushThemes="switchTheme"></navigation>
   <modal :settingModal="this.settingModal" :stages="this.stages" :round="rounds" :exercise="amtExercise" :work="workTime" :rest="restTime" @close="closeModal" @input="handleInputChange"></modal>
   <div class="main">
     <div class="stage" v-html="currentStage"></div>
@@ -82,6 +82,12 @@ export default {
         this.settingModal = !this.settingModal;
       }
     },
+    openModal() {
+      if ("open" == false) {
+      } else {
+        this.settingModal = !this.settingModal;
+      }
+    },
     handleInputChange(value, name) {
       if (name === "workTime") {
         this.workTime = value;
@@ -96,6 +102,9 @@ export default {
         this.rounds = value;
         this.createStages();
       }
+    },
+    switchThemes(name, primaryColor, accentColor, gradient) {
+      console.log(name, primaryColor, accentColor, gradient);
     },
     createStages: function() {
       this.stages = [];

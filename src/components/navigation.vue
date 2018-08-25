@@ -1,8 +1,9 @@
 <template>
     <nav class="main-nav">
     <ul>
-      <!-- <li>List of Exercises</li> -->
-      <li>Settings</li>
+      <li>
+        <a @click="openModal">Settings</a>
+      </li>
     </ul>
   </nav>
 </template>
@@ -10,7 +11,12 @@
 <script>
 export default {
   name: "navigation",
-  props: ["settings"]
+  props: ["settings"],
+  methods: {
+    openModal() {
+      this.$emit("open", true);
+    }
+  }
 };
 </script>
 
@@ -36,6 +42,28 @@ export default {
     text-transform: uppercase;
     font-weight: 800;
     letter-spacing: 1px;
+  }
+
+  a {
+    cursor: pointer;
+    transition: 300ms ease-in-out;
+    border-bottom: 2px solid transparent;
+    &:hover {
+      border-color: initial;
+      color: rgba(0, 0, 0, 0.25);
+    }
+  }
+
+  select {
+    border: none;
+    border-bottom: 2px solid;
+    border-radius: 0;
+    padding: 0;
+    background: transparent;
+    -webkit-appearance: none;
+    &:focus {
+      outline: none;
+    }
   }
 }
 </style>
