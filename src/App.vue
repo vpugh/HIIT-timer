@@ -62,16 +62,16 @@ export default {
     },
     currentState: function() {
       var round = this.round,
-        position = this.exercise[round] + 1,
+        position = this.exercise[round],
         circuit = Math.ceil((this.round + 1) / (this.amtExercise * 2)),
         truePosition =
           this.exercise[round] + 1 <= this.amtExercise * 2
             ? position
-            : this.exercise[round - this.amtExercise * 2 * (circuit - 1) + 1];
-      if (position % 2 == 0) {
-        return "Rest";
-      } else {
+            : this.exercise[round - this.amtExercise * 2 * (circuit - 1)];
+      if (truePosition % 2 == 0) {
         return "Exercise";
+      } else {
+        return "Rest";
       }
     }
   },
@@ -243,6 +243,10 @@ body {
     text-transform: uppercase;
     transition: 300ms ease-in-out;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+
+    &:not(:last-child) {
+      margin-bottom: 22px;
+    }
 
     @media (max-width: 991px) {
       margin-bottom: 20px;
